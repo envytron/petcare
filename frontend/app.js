@@ -57,7 +57,7 @@ async function addPet() {
   await fetch(`${API_URL}/api/pets`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, species: selectedBreed, age, emoji: selectedBreedImg })
+    body: JSON.stringify({ name, breed: selectedBreed, age, img: selectedBreedImg })
   });
   document.getElementById('petName').value = '';
   document.getElementById('petAge').value  = '';
