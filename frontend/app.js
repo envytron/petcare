@@ -36,7 +36,7 @@ async function loadPets() {
           <img src="${escAttr(pet.img)}" alt="breed" width="36" style="object-fit:contain">
         </td>
         <td>${pet.name}</td>
-        <td>${pet.species}</td>
+        <td>${pet.breed}</td>
         <td>${pet.age} yr${pet.age !== 1 ? 's' : ''}</td>
         <td class="text-center">
           <button class="btn btn-outline-danger btn-sm" onclick="deletePet(event, ${pet.id})">🗑</button>
