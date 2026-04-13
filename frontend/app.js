@@ -31,9 +31,9 @@ async function loadPets() {
     }
     tbody.innerHTML = pets.map(pet => `
       <tr class="pet-row ${pet.id === selectedPetId ? 'table-primary' : ''}"
-          onclick="selectPet(${pet.id}, '${escAttr(pet.name)}', '${escAttr(pet.species)}', ${pet.age}, '${escAttr(pet.emoji)}')">
+          onclick="selectPet(${pet.id}, '${escAttr(pet.name)}', '${escAttr(pet.breed)}', ${pet.age}, '${escAttr(pet.img)}')">
         <td class="text-center">
-          <img src="${escAttr(pet.emoji)}" alt="breed" width="36" style="object-fit:contain">
+          <img src="${escAttr(pet.img)}" alt="breed" width="36" style="object-fit:contain">
         </td>
         <td>${pet.name}</td>
         <td>${pet.species}</td>
