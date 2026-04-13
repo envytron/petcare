@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS petcaredb;
+USE petcaredb;
+
+CREATE TABLE IF NOT EXISTS pets (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  breed VARCHAR(100) NOT NULL,
+  age INT,
+  img VARCHAR(255) DEFAULT 'imgs/dalmatian.png',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  pet_id INT NOT NULL,
+  type ENUM('feeding', 'vet', 'note', 'bath', 'walk') NOT NULL,
+  note TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (pet_id) REFERENCES pets(id)
+);
