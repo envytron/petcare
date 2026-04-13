@@ -1,5 +1,5 @@
 // Railway URL
-const API_URL = "http://localhost:3000";
+const API_URL = "https://petcare-production-39a3.up.railway.app";
 
 let selectedPetId = null;
 let selectedBreed  = "Labrador Retriever";
