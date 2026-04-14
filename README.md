@@ -1,6 +1,6 @@
 # 🐾 Pet Care Log
 
-A full-stack web app to track your pets' care activities — feeding, vet visits, walks, baths, and notes. Built with a Nintendogs-inspired pastel interface!
+A full-stack web app to track your nintendogs pets! This is made to log your existing in game pets with a simple interface, this has 0 relation to nintendo
 
 ---
 
