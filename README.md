@@ -87,8 +87,8 @@ Just open `frontend/index.html` in your browser.
 ---
 
 ## 🌐 Live URLs
-- **Frontend:** https://your-app.vercel.app
-- **Backend API:** https://your-api.up.railway.app
+- **Frontend:** https://petcare-seven-omega.vercel.app/
+- **Backend API:** https://petcare-production-39a3.up.railway.app/
 
 ---
 
