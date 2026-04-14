@@ -39,6 +39,9 @@ async function loadPets() {
         <td>${pet.breed}</td>
         <td>${pet.age} yr${pet.age !== 1 ? 's' : ''}</td>
         <td class="text-center">
+          <button class="btn btn-outline-warning btn-sm" onclick="startEdit(event, ${pet.id}, '${escAttr(pet.name)}', '${escAttr(pet.breed)}', ${pet.age}, '${escAttr(pet.img)}')">✏️</button>
+        </td>
+        <td class="text-center">
           <button class="btn btn-outline-danger btn-sm" onclick="deletePet(event, ${pet.id})">🗑</button>
         </td>
       </tr>
@@ -49,20 +52,68 @@ async function loadPets() {
   }
 }
 
+let editingPetId = null;
+
 async function addPet() {
   const name = document.getElementById('petName').value.trim();
   const age  = parseInt(document.getElementById('petAge').value) || 0;
   if (!name) return showToast('Please enter a name!');
 
-  await fetch(`${API_URL}/api/pets`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, breed: selectedBreed, age, img: selectedBreedImg })
+  if (editingPetId) {
+    // UPDATE existing pet
+    await fetch(`${API_URL}/api/pets/${editingPetId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, breed: selectedBreed, age, img: selectedBreedImg })
+    });
+    showToast(`${name} updated!`);
+    cancelEdit();
+  } else {
+    // CREATE new pet
+    await fetch(`${API_URL}/api/pets`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, breed: selectedBreed, age, img: selectedBreedImg })
+    });
+    showToast(`${name} added!`);
+    document.getElementById('petName').value = '';
+    document.getElementById('petAge').value  = '';
+  }
+  loadPets();
+}
+
+function startEdit(event, id, name, breed, age, img) {
+  event.stopPropagation();
+  editingPetId = id;
+
+  // Fill the form with current pet data
+  document.getElementById('petName').value = name;
+  document.getElementById('petAge').value  = age;
+
+  // Update breed picker selection
+  selectedBreed    = breed;
+  selectedBreedImg = img;
+  document.getElementById('selectedBreedLabel').textContent = breed;
+  document.querySelectorAll('.breed-opt').forEach(el => {
+    el.classList.toggle('selected', el.dataset.breed === breed);
   });
+
+  // Change button text and show cancel
+  document.getElementById('addPetBtn').textContent = 'Save Changes';
+  document.getElementById('addPetBtn').classList.replace('btn-primary', 'btn-warning');
+  document.getElementById('cancelEditBtn').style.display = 'block';
+
+  // Scroll to form
+  document.querySelector('.card.mb-4').scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelEdit() {
+  editingPetId = null;
   document.getElementById('petName').value = '';
   document.getElementById('petAge').value  = '';
-  showToast(`${name} added!`);
-  loadPets();
+  document.getElementById('addPetBtn').textContent = 'Add Pet';
+  document.getElementById('addPetBtn').classList.replace('btn-warning', 'btn-primary');
+  document.getElementById('cancelEditBtn').style.display = 'none';
 }
 
 async function deletePet(event, id) {

@@ -41,7 +41,7 @@
                 <span class="breed-opt" data-breed="Dachshund" data-img="imgs/dachshund.png" title="Dachshund">
                   <img src="imgs/dachshund.png" alt="dchs_icon">
                 </span>
-                <span class="breed-opt" data-breed="Dalmatian" data-img="imgs/dalmatian.png" title="Dalmatian">
+                <span class="breed-opt" data-breed="Dalmatian" data-img="imgs/puppy.png" title="Dalmatian">
                   <img src="imgs/puppy.png" alt="dmtn_icon">
                 </span>
                 <span class="breed-opt" data-breed="Golden Retriever" data-img="imgs/golden.png" title="Golden Retriever">
@@ -80,7 +80,7 @@
                 <span class="breed-opt" data-breed="Shih Tzu" data-img="imgs/shihtzu.png" title="Shih Tzu">
                   <img src="imgs/shihtzu.png" alt="shtz_icon">
                 </span>
-                <span class="breed-opt" data-breed="Maltese" data-img="imgs/maltese.png" title="Maltese">
+                <span class="breed-opt" data-breed="Maltese" data-img="imgs/maltese.jpg" title="Maltese">
                   <img src="imgs/maltese.jpg" alt="mlts_icon">
                 </span>
                 <span class="breed-opt" data-breed="Jack Russell Terrier" data-img="imgs/jackrussell.png" title="Jack Russell Terrier">
@@ -95,7 +95,8 @@
               <label class="form-label">Age (years)</label>
               <input type="number" id="petAge" class="form-control form-control-sm" placeholder="ex: 3" min="0">
             </div>
-            <button class="btn btn-primary btn-sm w-100" onclick="addPet()">Add Pet</button>
+            <button id="addPetBtn" class="btn btn-primary btn-sm w-100" onclick="addPet()">Add Pet</button>
+            <button id="cancelEditBtn" class="btn btn-outline-secondary btn-sm w-100 mt-1" onclick="cancelEdit()" style="display:none">Cancel Edit</button>
           </div>
         </div>
 
@@ -108,7 +109,7 @@
                 <th>Name</th>
                 <th>Breed</th>
                 <th>Age</th>
-                <th></th>
+                <th colspan="2"></th>
               </tr>
             </thead>
             <tbody id="petTableBody">
